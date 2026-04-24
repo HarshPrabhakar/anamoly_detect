@@ -1,23 +1,20 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function FilterBar({ onFilterChange }) {
-  const [timeRange, setTimeRange] = useState("1h");
+const FilterBar = ({ onFilterChange = () => {} }) => {
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
-    onFilterChange(timeRange);
-  }, [timeRange, onFilterChange]);
+    // Safe call
+    onFilterChange(filter);
+  }, [filter, onFilterChange]);
 
   return (
-    <div className="filter-bar">
-      <label>
-        Time range:
-        <select value={timeRange} onChange={(e) => setTimeRange(e.target.value)}>
-          <option value="15m">15 min</option>
-          <option value="1h">1 h</option>
-          <option value="6h">6 h</option>
-          <option value="24h">24 h</option>
-        </select>
-      </label>
+    <div style={{ marginBottom: "20px" }}>
+      <button onClick={() => setFilter("all")}>All</button>
+      <button onClick={() => setFilter("critical")}>Critical</button>
+      <button onClick={() => setFilter("warning")}>Warning</button>
     </div>
   );
-}
+};
+
+export default FilterBar;
