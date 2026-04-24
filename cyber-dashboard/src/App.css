@@ -1,0 +1,247 @@
+/* App Layout */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  min-height: calc(100vh - 60px);
+}
+
+/* Page transitions */
+.page-enter {
+  animation: float-up 0.4s ease forwards;
+}
+
+/* Status indicator dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-dot.live {
+  background: var(--accent-green);
+  animation: pulse-glow 2s infinite;
+  box-shadow: 0 0 8px var(--accent-green);
+}
+
+.status-dot.critical {
+  background: var(--accent-red);
+  animation: threat-pulse 1s infinite;
+  box-shadow: 0 0 8px var(--accent-red);
+}
+
+.status-dot.warning {
+  background: var(--accent-orange);
+  box-shadow: 0 0 6px var(--accent-orange);
+}
+
+.status-dot.normal {
+  background: var(--accent-green);
+  box-shadow: 0 0 6px var(--accent-green);
+}
+
+/* Cyber card */
+.cyber-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: 4px;
+  padding: 20px;
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cyber-card:hover {
+  border-color: var(--border-glow);
+  box-shadow: 0 4px 24px rgba(0, 20, 40, 0.6), inset 0 0 40px rgba(0,212,255,0.02);
+}
+
+.cyber-card:hover::before {
+  opacity: 1;
+}
+
+/* Corner brackets */
+.bracket-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+}
+
+.bracket-corner.tl {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+}
+
+.bracket-corner.tr {
+  top: -1px;
+  right: -1px;
+  border-top: 2px solid var(--accent-cyan);
+  border-right: 2px solid var(--accent-cyan);
+}
+
+.bracket-corner.bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 2px solid var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+}
+
+.bracket-corner.br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--accent-cyan);
+  border-right: 2px solid var(--accent-cyan);
+}
+
+/* Section label */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+}
+
+/* Badge */
+.cyber-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.cyber-badge.critical {
+  background: var(--accent-red-dim);
+  color: var(--accent-red);
+  border: 1px solid rgba(255, 45, 85, 0.3);
+}
+
+.cyber-badge.warning {
+  background: var(--accent-orange-dim);
+  color: var(--accent-orange);
+  border: 1px solid rgba(255, 149, 0, 0.3);
+}
+
+.cyber-badge.normal {
+  background: var(--accent-green-dim);
+  color: var(--accent-green);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.cyber-badge.info {
+  background: var(--accent-cyan-dim);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+/* Button */
+.cyber-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border-glow);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.cyber-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  background: var(--accent-cyan-dim);
+  box-shadow: 0 0 12px rgba(0,212,255,0.2);
+}
+
+.cyber-btn.active {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  background: var(--accent-cyan-dim);
+}
+
+.cyber-btn.danger {
+  border-color: rgba(255,45,85,0.4);
+  color: var(--accent-red);
+}
+
+.cyber-btn.danger:hover {
+  border-color: var(--accent-red);
+  background: var(--accent-red-dim);
+  box-shadow: 0 0 12px rgba(255,45,85,0.2);
+}
+
+/* Divider */
+.cyber-divider {
+  border: none;
+  border-top: 1px solid var(--border-dim);
+  margin: 16px 0;
+}
+
+/* Mono text */
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Glowing text */
+.glow-cyan {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+.glow-red {
+  color: var(--accent-red);
+  text-shadow: 0 0 12px rgba(255,45,85,0.5);
+}
+
+.glow-green {
+  color: var(--accent-green);
+  text-shadow: 0 0 10px rgba(0,255,136,0.4);
+}

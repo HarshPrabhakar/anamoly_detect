@@ -1,88 +1,140 @@
-.modal-backdrop{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.modal{
-  background:#fff;
-  padding:1rem;
-  border-radius:8px;
-  max-width:600px;
-  width:90%;
-}
-
-.filter-bar {
-  margin-bottom: 1rem;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.alert-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.alert-table th,
-.alert-table td {
-  padding: .5rem;
-  border: 1px solid #ddd;
-}
-.alert-table th {
-  background: #fafafa;
-  text-align: left;
-}
-.alert-table td button {
-  background: #e53935;
-  color: #fff;
-  border: none;
-  padding: .2rem .6rem;
-  border-radius: 4px;
-}
-.app-content {
-  padding: 1rem;
-}
-/* Basic reset – keeps body from being a blank white screen */
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #f8f9fa; /* light gray by default */
-  color: #222;
+:root {
+  --bg-void: #030712;
+  --bg-deep: #050d1a;
+  --bg-panel: #071224;
+  --bg-card: #0a1628;
+  --bg-elevated: #0d1e36;
+  --border-dim: #0e2a4a;
+  --border-glow: #1a4a7a;
+  --border-active: #00d4ff;
+  --accent-cyan: #00d4ff;
+  --accent-cyan-dim: rgba(0, 212, 255, 0.15);
+  --accent-cyan-glow: rgba(0, 212, 255, 0.4);
+  --accent-green: #00ff88;
+  --accent-green-dim: rgba(0, 255, 136, 0.12);
+  --accent-red: #ff2d55;
+  --accent-red-dim: rgba(255, 45, 85, 0.15);
+  --accent-orange: #ff9500;
+  --accent-orange-dim: rgba(255, 149, 0, 0.15);
+  --accent-purple: #bf5af2;
+  --text-primary: #e0f2fe;
+  --text-secondary: #7eb3d4;
+  --text-muted: #3d6b8a;
+  --text-dim: #1e3a52;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-display: 'Exo 2', sans-serif;
+  --font-ui: 'Rajdhani', sans-serif;
+  --grid-line: rgba(0, 212, 255, 0.04);
+  --scan-line: rgba(0, 212, 255, 0.02);
 }
 
-.app-content {
-  padding: 1rem;
-}
-
-/* Simple Nav styling */
-.app-navbar {
-  background: #2d3748;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.app-navbar ul {
-  list-style: none;
+* {
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 1rem;
+  box-sizing: border-box;
 }
 
-.app-navbar li a {
-  color: #fff;
-  text-decoration: none;
+html {
+  scroll-behavior: smooth;
 }
 
-.app-navbar li a.active {
-  font-weight: bold;
-  text-decoration: underline;
+body {
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      var(--grid-line) 39px,
+      var(--grid-line) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      var(--grid-line) 39px,
+      var(--grid-line) 40px
+    );
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--scan-line) 2px,
+    var(--scan-line) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-glow);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px var(--accent-cyan-glow); }
+  50% { box-shadow: 0 0 20px var(--accent-cyan-glow), 0 0 40px rgba(0,212,255,0.2); }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes float-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes number-tick {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes threat-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.7; }
 }
